@@ -1,0 +1,424 @@
+{
+  "api": {
+    "//base": "https://10.81.213.228:8009/api/",
+    "base": "https://10.81.213.228:8009/api/",
+    "authenticationURL": "Authentication/UserAuthentication",
+    "retryCount": 1,
+    "requestTimeout": 120000,
+    "reports": {
+      "categoryWise": "PowerDashboardAPI/api/PowerDashboard/GetCategoryWiseData",
+      "regionWise": "api/PowerDashboard/GetRegionWiseData",
+      "regions": "PowerDashboardAPI/api/PowerDashboard/GetRegion",
+      "impactedServers": "PowerDashboardAPI/api/PowerDashboard/GetImpactedServerData",
+      "parameterDetails": "PowerDashboardAPI/api/PowerDashboard/GetParameterForCategory",
+      "resourceParamDetails": "PowerDashboardAPI/api/PowerDashboard/GetParameterForResources"
+    }
+  },
+  "dashboardCharts": {
+    "name": "KEY STATISTICS",
+    "colors": ["#bc204b", "#eaaa00", "#009a44"],
+    "colorNames": ["Critical", "Warning", "Healthy"],
+    "fontColor": "#1383f2",
+    "numberOfDonut": 8,
+    "space": 40,
+    "mailtoLink": "mailto://support@ivor.com",
+    "serviceNowLink": "https://kpmggoprod.service-now.com/incident.do?sys_id=",
+    "tooltipStyle": {
+      "position": "absolute",
+      "width": "auto",
+      "height": "auto",
+      "background": "none repeat scroll 0 0 white",
+      "border": "0 none",
+      "border-radius": "8px 8px 8px 8px",
+      "box-shadow": "-3px 3px 15px #888888",
+      "color": "black",
+      "font": "12px sans-serif",
+      "padding": "5px",
+      "text-align": "center",
+      "display": "none"
+    },
+    "donutConfig": {
+      "height": 100,
+      "width": 100,
+      "top": 10,
+      "bottom": 10,
+      "left": 10,
+      "right": 10,
+      "innerRadius": 20
+    },
+    "donutDetails": [
+      {
+        "id": 1,
+        "name": "Service Management",
+        "api": "ServiceManagement/GetServiceManagementDetails",
+        "colors": ["#bc204b", "#eaaa00", "#753F19", "#009a44"],
+        "drillthrough": true,
+        "displayLabel": ["Tickets Severity"],
+        "displayValue": ["Count"],
+        "noDataText": "No Tickets"
+      },
+      {
+        "id": 2,
+        "name": "VM Availibility",
+        "api": "LogAnalytics/GetHeartbeatDetails",
+        "colors": ["#009a44", "#bc204b"],
+        "drillthrough": true,
+        "displayLabel": ["VM Status"],
+        "displayValue": ["Count"],
+        "noDataText": "No Servers"
+      },
+      {
+        "id": 3,
+        "name": "VM Resources Utilization",
+        "api": "LogAnalytics/GetPerformanceDetails",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": true,
+        "displayLabel": ["VM Status"],
+        "displayValue": ["VM Count"],
+        "noDataText": "No Resources"
+      },
+      {
+        "id": 4,
+        "name": "VM Performance",
+        "api": "LogAnalytics/GetPerformanceDetails",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": true,
+        "displayLabel": ["VM Status"],
+        "displayValue": ["VM Count"],
+        "noDataText": "No Resources"
+      },
+      {
+        "id": 5,
+        "name": "Hosting Services",
+        "api": "",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": false,
+        "displayLabel": ["Tickets Name"],
+        "displayValue": ["Count"],
+        "noDataText": "No Data"
+      },
+      {
+        "id": 6,
+        "name": "Identity Management",
+        "api": "",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": false,
+        "displayLabel": ["Tickets Name"],
+        "displayValue": ["Count"],
+        "noDataText": "No Data"
+      },
+      {
+        "id": 7,
+        "name": "Connectivity",
+        "api": "",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": false,
+        "displayLabel": ["Tickets Name"],
+        "displayValue": ["Count"],
+        "noDataText": "No Data"
+      },
+      {
+        "id": 8,
+        "name": "Gateway Status",
+        "api": "",
+        "colors": ["#bc204b", "#eaaa00", "#009a44"],
+        "drillthrough": false,
+        "displayLabel": ["Tickets Name"],
+        "displayValue": ["Count"],
+        "noDataText": "No Data"
+      }
+    ],
+    "performanceUtilizationRelation": {
+      "Performance":[
+        {
+          "ObjectName": "Network Adapter",
+          "ParameterName": [
+            {
+              "name": "Bytes Sent/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Bytes Received/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Logical Disk",
+          "ParameterName": [
+            {
+              "name": "Avg. Disk sec/Write",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Disk Transfers/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Avg. Disk sec/Read",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Disk Reads/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Current Disk Queue Length",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Disk Writes/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Free Megabytes",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "System",
+          "ParameterName": [
+            {
+              "name": "Processor Queue Length",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Memory",
+          "ParameterName": [
+            {
+              "name": "Page Reads/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Page Writes/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Pages/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Available MBytes",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Available MBytes Memory",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Used Memory",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Used Swap Space",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Processor",
+          "ParameterName": [
+            {
+              "name": "% Idle Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Interrupt Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% IO Wait Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Processor Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Privileged Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        }
+      ],
+      "Utilization":[
+        {
+          "ObjectName": "Network Interface",
+          "ParameterName": [
+            {
+              "name": "Bytes Total/sec",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Memory",
+          "ParameterName": [
+            {
+              "name": "Available MBytes",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Committed Bytes In Use",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Logical Disk",
+          "ParameterName": [
+            {
+              "name": "Free Megabytes",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "% Free Space",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "Processor",
+          "ParameterName": [
+            {
+              "name": "% Processor Time",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        },
+        {
+          "ObjectName": "System",
+          "ParameterName": [
+            {
+              "name": "Free Physical Memory",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Free Space in Paging Files",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Free Virtual Memory",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            },
+            {
+              "name": "Processor Queue Length",
+              "thresholdMin": 60,
+              "thresholdMax": 80
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dashboardRegion": {
+    "name": "VIEW OF AZURE DATA CENTERS",
+    "colorMap": {
+      "GREEN": "'#009933'",
+      "AMBER": "'#ffcc00'",
+      "RED": "'#CC3300'"
+    },
+    "jsonAddress": "./assets/world.json",
+    "api": "LogAnalytics/GetRegions",
+    "regionName": "GLOBAL",
+    "height": 290,
+    "width": 600
+  },
+  "azureAdvisorRecommendation": {
+    "api": "LogAnalytics/GetRecommendation",
+    "popupName": "AZURE ADVISORY",
+    "blockName": "AZURE ADVISORY",
+    "isDrillthrough": true,
+    "popupTable": {
+      "retrieve": true,
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "language": {
+        "search": "<i class='fa fa-file-excel-o col-xs-2 excelIconStyle' aria-hidden='true'></i><i class='fa fa-filter' aria-hidden='true'></i>",
+        "searchPlaceholder": " Search"
+      }
+    },
+    "displayTable": {
+      "retrieve": true,
+      "searching": false,
+      "pageLength": 4,
+      "ordering": false,
+      "paging": false,
+      "info": false,
+      "dom": "Bfrtip"
+    },
+    "colors": ["#00A3A1", "#9B642E", "#DE8626"],
+    "donutConfig": {
+      "height": 85,
+      "width": 100,
+      "top": 10,
+      "bottom": 10,
+      "left": 10,
+      "right": 10,
+      "innerRadius": 15
+    },
+    "tooltipStyle": {
+      "position": "absolute",
+      "width": "auto",
+      "height": "auto",
+      "background": "none repeat scroll 0 0 white",
+      "border": "0 none",
+      "border-radius": "8px 8px 8px 8px",
+      "box-shadow": "-3px 3px 15px #888888",
+      "color": "black",
+      "font": "12px sans-serif",
+      "padding": "5px",
+      "text-align": "center",
+      "display": "none"
+    },
+    "fontColor": "#1383f2",
+    "resourceLabel": ["Recommendation"],
+    "resourceValue": ["Count"],
+    "impactLabel": ["Impacted Resource"],
+    "impactValue": ["Count"]
+  },
+  "portfolioHeadReport": {
+    "name": "PORTFOLIO HEAD REPORT"
+  },
+  "azureSecurityCenter": {
+    "name": "AZURE SECURITY CENTER"
+  },
+  "operationSummary": {
+    "name": "OPERATION SUMMARY"
+  }
+}
